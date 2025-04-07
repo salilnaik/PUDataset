@@ -23,11 +23,11 @@ class puDataset:
         self.X, self.y = shuffle(self.X, self.y)
         self.s = self.y.copy()
         positive = np.where(self.y == 1)[0]
-        if(self.c == 1):
+        if(self.c == 0):
             unlabeled = positive
         else:
-            unlabeled = positive[int(len(positive)*self.c):]
-        self.s[unlabeled] = 0
+            unlabeled = positive[int((len(positive)-1)*self.c):]
+        self.y[unlabeled] = 0
         self.X, self.y, self.s = shuffle(self.X, self.y, self.s)
         
     def trainTestSplit(self, test_size: float | int) -> None:
@@ -46,4 +46,4 @@ class puDataset:
         return self.X_test, self.y_test
     
     def getPriorLabels(self) -> np.ndarray:
-        return self.c
+        return self.s
