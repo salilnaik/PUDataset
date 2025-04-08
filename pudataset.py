@@ -42,7 +42,6 @@ class puDataset:
         return self.X, self.y
     
     def getTestData(self) -> tuple[np.ndarray, np.ndarray]:
-        assert self.X_test and self.y_test, "Test dataset not created"
         return self.X_test, self.y_test
     
     def getPriorLabels(self) -> np.ndarray:
